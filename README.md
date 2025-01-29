@@ -10,6 +10,7 @@ This project focuses on developing a binary classification model to predict loan
 1. Data Exploration and Statistical Tests
    - Loading the dataset
    - Checking number of records
+   - Checking Distribution of Class
    - Identifying missing values
    - Counting unique values per column
    - Obtaining DataFrame information
@@ -17,10 +18,23 @@ This project focuses on developing a binary classification model to predict loan
    - Performing the Mann-Whitney U test and calculating correlations of numeric attributes
    - Statistical analysis of categorical attributes
 2. Decision Tree - Undersampled
+   - Decision Tree Classifier with Undersampling
+   - Performance Metrics Calculation
 3. Decision Tree - Imbalanced Class
-4. Random Forest - Undersampled 
+   - Decision Tree Classifier with Imbalanced Class Distribution
+   - Performance Metrics Calculation
+4. Random Forest - Undersampled
+   - Random Forest with Undersampling
+   - Performance Metrics Calculation
 5. Random Forest - Imbalanced Class
+   - Random Forest with with Imbalanced Class Distribution
+   - Performance Metrics Calculation
 6. XGBoost - Undersampled
+   - XGBoost with Undersampling
+   - Performance Metrics Calculation
 7. XGBoost - Imbalanced Class
+   - XGBoost with with Imbalanced Class Distribution
+   - Performance Metrics Calculation
 8. Analysis of models
+   - Determining strongest model(s)
 9. Insights into strongest model identified 

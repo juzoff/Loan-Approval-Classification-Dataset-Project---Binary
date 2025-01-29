@@ -8,6 +8,14 @@ This project focuses on developing a binary classification model to predict loan
 
 ## Components:
 1. Data Exploration and Statistical Tests
+   - Loading the dataset
+   - Checking number of records
+   - Identifying missing values
+   - Counting unique values per column
+   - Obtaining DataFrame information
+   - Conducting the Shapiro-Wilk test for normality
+   - Performing the Mann-Whitney U test and calculating correlations of numeric attributes
+   - Statistical analysis of categorical attributes
 2. Decision Tree - Undersampled
 3. Decision Tree - Imbalanced Class
 4. Random Forest - Undersampled 

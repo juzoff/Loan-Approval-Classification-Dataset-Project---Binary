@@ -36,6 +36,7 @@ This project focuses on developing a binary classification model to predict loan
    - Performance Evaluation: The script evaluates the models by calculating key metrics like accuracy, precision, recall, F1-score, and specificity for both training and test sets of both scenarios (original and resampled data). The results are systematically compared through a DataFrame, highlighting how different data distributions and model configurations affect performance. Additionally, it logs the number of boosting rounds used to provide insight into model complexity and training duration.
 5. Analysis of models
 
-![metr](https://github.com/user-attachments/assets/9eefd7cc-7708-4b11-b4f8-1c081713c1c9)
+![metr](https://github.com/user-attachments/assets/15965f6b-17cf-4519-b3ab-9d669832a490)
+
 
 6. Insights into strongest model identified 

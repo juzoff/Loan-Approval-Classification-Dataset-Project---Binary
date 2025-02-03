@@ -34,9 +34,22 @@ This project focuses on developing a binary classification model to predict loan
    - Data Preparation and Preprocessing: The script loads and preprocesses a dataset for loan approval, handling categorical variables with OneHotEncoder in a ColumnTransformer. It then splits the data into an 80-20 training and testing sets, maintaining class balance through stratification. Class imbalance is addressed by applying RandomUnderSampler to create a balanced dataset for training.
    - Model Training and Cross-Validation: An XGBClassifier wrapped in a custom XGBClassifierWrapper class is used to train models on both the original imbalanced and undersampled datasets. Cross-validation is performed to assess model performance, utilizing early stopping to prevent overfitting. This setup allows comparison between training on imbalanced versus balanced data.
    - Performance Evaluation: The script evaluates the models by calculating key metrics like accuracy, precision, recall, F1-score, and specificity for both training and test sets of both scenarios (original and resampled data). The results are systematically compared through a DataFrame, highlighting how different data distributions and model configurations affect performance. Additionally, it logs the number of boosting rounds used to provide insight into model complexity and training duration.
-5. Analysis of models
+5. Analysis of models and strongest model chosen for each research objective:
 
 ![metr](https://github.com/user-attachments/assets/15965f6b-17cf-4519-b3ab-9d669832a490)
 
+- Research Objective 1: Identifying Customers Who Shouldn't Receive Loans
+  - Goal: Avoid approving loans for customers who are likely to default
+  - Relevant Metrics:
+    - Specificity: Measures the model's ability to correctly identify customers who should not receive loans (true negatives)
+    - Precision: Measures the proportion of correctly approved loans out of all approved loans (minimizes false approvals)
+  - Strongest Model: **Random Forest on Original Imbalanced Data (Highest specificity and precision)**
 
-6. Insights into strongest model identified 
+- Research Objective 2: Identifying Customers Who Should Receive Loans
+  - Goal: Approve as many loans as possible for customers who are likely to repay
+  - Relevant Metrics:
+    - Recall (Sensitivity): Measures the model's ability to correctly identify customers who should receive loans (true positives)
+    - Accuracy: Measures overall correctness of the model
+  - Strongest Model: **XGBoost on Balanced Data (Highest recall and accuracy)**
+
+6. Insights into strongest models identified for the research objectives

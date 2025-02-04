@@ -18,7 +18,11 @@ This project focuses on developing a binary classification model to predict loan
      - 0 missing values found
    - Obtaining DataFrame information
    - Conducting the Shapiro-Wilk test for normality between class (loan_status and numeric attributes)
-     - Results indicate all numeric attributes are likely not normally distributed (due to p-value <0.05 for each, indicating strong evidence to reject the null hypothesis of the Shapiro-Wilk test, which assumes that the data is normally distributed)
+
+![rrr](https://github.com/user-attachments/assets/ac68f93e-f9d6-48e4-9e2a-40c4997fbd55) 
+
+> Results indicate all numeric attributes are likely not normally distributed (due to p-value <0.05 for each, indicating strong evidence to reject the null hypothesis of the Shapiro-Wilk test, which assumes that the data is normally distributed)
+   
    - Statistical analysis of numeric attributes: Wilcoxon Rank-Sum Test (Mann-Whitney U)
      - The Wilcoxon Rank-Sum Test (Mann-Whitney U) was chosen because the Shapiro-Wilk test indicated that the numeric attributes are not normally distributed, and the Wilcoxon test is a non-parametric method that does not assume normality, making it suitable for comparing distributions between two independent groups (e.g., loan_status = 0 and loan_status = 1)
 

@@ -12,29 +12,46 @@ This project focuses on developing a binary classification model to predict loan
 ​This rich dataset served as the foundation for implementing machine learning models, including decision trees, random forests, and XGBoost, aimed at accurately predicting loan approval statuses and offering insights into the critical factors that affect lending decisions. Through rigorous exploratory data analysis, statistical testing, and model evaluation, I explored the contributing valuable insights into financial risk assessment and enhanced the understanding of the underlying patterns associated with loan approvals.
 
 ## Components:
-1. Data Exploration and Statistical Tests
+### 1. Data Exploration and Statistical Tests
    - Loading the dataset
-   - Checking number of records
-   - Checking Distribution of Class
-   - Identifying missing values
-   - Counting unique values per column
+   - Checking for missing values
+     - 0 missing values found
    - Obtaining DataFrame information
-   - Conducting the Shapiro-Wilk test for normality
-   - Statistical analysis of categorical attributes: Performing the Mann-Whitney U test and calculating correlations of numeric attributes
+   - Conducting the Shapiro-Wilk test for normality between class (loan_status and numeric attributes)
+     - Results indicate all numeric attributes are likely not normally distributed (due to p-value <0.05 for each, indicating strong evidence to reject the null hypothesis of the Shapiro-Wilk test, which assumes that the data is normally distributed)
+   - Statistical analysis of numeric attributes: Wilcoxon Rank-Sum Test (Mann-Whitney U)
+     - The Wilcoxon Rank-Sum Test (Mann-Whitney U) was chosen because the Shapiro-Wilk test indicated that the numeric attributes are not normally distributed, and the Wilcoxon test is a non-parametric method that does not assume normality, making it suitable for comparing distributions between two independent groups (e.g., loan_status = 0 and loan_status = 1)
+
+![re](https://github.com/user-attachments/assets/2d4137d1-367f-4ecf-aa4d-fa62f177e6d3)
+
    - Statistical analysis of categorical attributes: Chi-square testing
-2. Decision Tree - Imbalanced vs Balanced Class
+
+![r](https://github.com/user-attachments/assets/d83b5276-6a49-42b8-93f3-cf254bdbc8d5)
+
+---
+
+### 2. Decision Tree - Imbalanced vs Balanced Class
    - Data Preparation and Feature Selection: The dataset was loaded from a CSV file, split into features (X) and target (y). Categorical variables were handled using OneHotEncoder within a ColumnTransformer. The dataset was split into an 80-20 training and testing sets with stratification, and feature selection was performed using RFECV (Recursive Feature Elimination with Cross-Validation).
    - Handling Imbalanced Data: The script dealt with class imbalance by applying RandomUnderSampler for creating two scenarios: one with the original imbalanced data and another with undersampled data to balance classes for training. GridSearchCV was used twice, once on the imbalanced dataset and once on the undersampled dataset, to find optimal hyperparameters for a DecisionTreeClassifier.
    - Model Training and Evaluation: Two decision tree models were trained—one on the imbalanced data and another on the undersampled data with selected features. Performance was evaluated using confusion matrices and classification reports for both training and test sets, providing insights into the model's accuracy, precision, recall, and F1-score for each dataset scenario.
-3. Random Forest - Imbalanced vs Balanced Class
+
+---
+
+### 3. Random Forest - Imbalanced vs Balanced Class
    - Data Processing and Feature Selection: The script begins by loading and preprocessing a dataset, handling categorical variables with OneHotEncoder within a ColumnTransformer. The data is split into an 80-20 training and testing sets with stratification. Feature selection is performed using RFECV (Recursive Feature Elimination with Cross-Validation) on both the original imbalanced data and the undersampled data, selecting optimal features for model training.
    - Handling Class Imbalance: To address potential class imbalance, RandomUnderSampler is used to create an undersampled version of the training data. The script then trains and evaluates the Random Forest Classifier on both the original imbalanced dataset and this undersampled dataset, allowing comparison of model performance under different class distributions.
    - Model Training, Tuning, and Evaluation: A RandomForestClassifier is trained using GridSearchCV for hyperparameter tuning. The best parameters are found, and models are evaluated for both scenarios (imbalanced and undersampled) using metrics like accuracy, recall, precision, specificity, along with confusion matrices and classification reports. This comprehensive evaluation helps understand how the model performs across different data distributions.
-4. XGBoost - Imbalanced vs Balanced Class
+
+---
+
+### 4. XGBoost - Imbalanced vs Balanced Class
    - Data Preparation and Preprocessing: The script loads and preprocesses a dataset for loan approval, handling categorical variables with OneHotEncoder in a ColumnTransformer. It then splits the data into an 80-20 training and testing sets, maintaining class balance through stratification. Class imbalance is addressed by applying RandomUnderSampler to create a balanced dataset for training.
    - Model Training and Cross-Validation: An XGBClassifier wrapped in a custom XGBClassifierWrapper class is used to train models on both the original imbalanced and undersampled datasets. Cross-validation is performed to assess model performance, utilizing early stopping to prevent overfitting. This setup allows comparison between training on imbalanced versus balanced data.
    - Performance Evaluation: The script evaluates the models by calculating key metrics like accuracy, precision, recall, F1-score, and specificity for both training and test sets of both scenarios (original and resampled data). The results are systematically compared through a DataFrame, highlighting how different data distributions and model configurations affect performance. Additionally, it logs the number of boosting rounds used to provide insight into model complexity and training duration.
-5. Analysis of models and strongest model chosen for each research objective:
+
+---
+
+### 5. Analysis of models and strongest model chosen for each research objective:
 
 ![metr](https://github.com/user-attachments/assets/15965f6b-17cf-4519-b3ab-9d669832a490)
 
@@ -52,4 +69,29 @@ This project focuses on developing a binary classification model to predict loan
     - Accuracy: Measures overall correctness of the model
   - Strongest Model: **XGBoost on Balanced Data (Highest recall and accuracy)**
 
-6. Insights into strongest models identified for the research objectives
+---
+
+### 6. Insights into strongest models identified for the research objectives
+- Research Objective 1: Identifying Customers Who Shouldn't Receive Loans
+  - Strongest Model: **Random Forest on Original Imbalanced Data (Highest specificity and precision)**
+    - Specificity: 0.9756, Precision: 0.8977
+    - Best parameters from GridSearchCV: {'class_weight': None, 'criterion': 'gini', 'max_depth': 20, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 500}
+    - Selected Features:
+['cat__person_gender_female' 'cat__person_education_Bachelor'
+ 'cat__person_home_ownership_MORTGAGE' 'cat__person_home_ownership_OWN'
+ 'cat__person_home_ownership_RENT' 'cat__loan_intent_DEBTCONSOLIDATION'
+ 'cat__loan_intent_EDUCATION' 'cat__loan_intent_HOMEIMPROVEMENT'
+ 'cat__loan_intent_MEDICAL' 'cat__loan_intent_VENTURE'
+ 'cat__previous_loan_defaults_on_file_No'
+ 'cat__previous_loan_defaults_on_file_Yes' 'remainder__person_age'
+ 'remainder__person_income' 'remainder__person_emp_exp'
+ 'remainder__loan_amnt' 'remainder__loan_int_rate'
+ 'remainder__loan_percent_income' 'remainder__cb_person_cred_hist_length'
+ 'remainder__credit_score']
+      
+- Research Objective 2: Identifying Customers Who Should Receive Loans
+  - Strongest Model: **XGBoost on Balanced Data (Highest recall and accuracy)**
+    - Recall: 0.9315, Accuracy: 0.8964
+    - Number of boosting rounds used (Resampled Data): 47
+
+   

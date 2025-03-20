@@ -57,7 +57,8 @@ This project focuses on developing a binary classification model to predict loan
 
 ### 5. Analysis of models and strongest model chosen for each research objective:
 
-![metr](https://github.com/user-attachments/assets/15965f6b-17cf-4519-b3ab-9d669832a490)
+![image](https://github.com/user-attachments/assets/2776f8d2-93cc-4250-a345-22c556385f5c)
+
 
 - Research Objective 1: Identifying Customers Who Shouldn't Receive Loans
   - Goal: Avoid approving loans for customers who are likely to default

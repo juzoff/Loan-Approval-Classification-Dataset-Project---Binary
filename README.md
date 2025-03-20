@@ -17,18 +17,49 @@ This project focuses on developing a binary classification model to predict loan
    - Checking for missing values
      - 0 missing values found
    - Obtaining DataFrame information
-   - Conducting the Shapiro-Wilk test for normality between class (loan_status and numeric attributes)
+   - Conducting the Anderson Darling test for normality between class (loan_status and numeric attributes), considering the size of the dataset (45,000)
 
-![rrr](https://github.com/user-attachments/assets/ac68f93e-f9d6-48e4-9e2a-40c4997fbd55) 
+![image](https://github.com/user-attachments/assets/a550d2ad-4a97-4066-bbe9-7ec6d4a30c2c)
 
-> Results indicate all numeric attributes are likely not normally distributed (due to p-value <0.05 for each, indicating strong evidence to reject the null hypothesis of the Shapiro-Wilk test, which assumes that the data is normally distributed)
+>Evaluations:
+- person_age:
+  Statistic: 1835.93 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- person_income:
+  Statistic: 4406.80 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- person_emp_exp:
+  Statistic: 2047.95 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- loan_amnt:
+  Statistic: 1116.55 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- loan_int_rate:
+  Statistic: 189.95 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- loan_percent_income:
+  Statistic: 799.09 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- cb_person_cred_hist_length:
+  Statistic: 2018.87 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.
+
+- credit_score:
+  Statistic: 299.92 > 0.787 (Critical Value at 5%)
+  Result: Reject the null hypothesis → Not normally distributed.   
    
-   - Statistical analysis of numeric attributes: Wilcoxon Rank-Sum Test (Mann-Whitney U)
-     - The Wilcoxon Rank-Sum Test (Mann-Whitney U) was chosen because the Shapiro-Wilk test indicated that the numeric attributes are not normally distributed, and the Wilcoxon test is a non-parametric method that does not assume normality, making it suitable for comparing distributions between two independent groups (e.g., loan_status = 0 and loan_status = 1)
+>Statistical analysis of numeric attributes: Wilcoxon Rank-Sum Test (Mann-Whitney U):
+- The Wilcoxon Rank-Sum Test (Mann-Whitney U) was chosen because the Anderson Darling test indicated that the numeric attributes are not normally distributed, and the Wilcoxon test is a non-parametric method that does not assume normality, making it suitable for comparing distributions between two independent groups (e.g., loan_status = 0 and loan_status = 1)
 
 ![re](https://github.com/user-attachments/assets/2d4137d1-367f-4ecf-aa4d-fa62f177e6d3)
 
-   - Statistical analysis of categorical attributes: Chi-square testing
+>Statistical analysis of categorical attributes: Chi-square testing
 
 ![r](https://github.com/user-attachments/assets/d83b5276-6a49-42b8-93f3-cf254bdbc8d5)
 

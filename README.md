@@ -59,9 +59,24 @@ This project focuses on developing a binary classification model to predict loan
 
 ![re](https://github.com/user-attachments/assets/2d4137d1-367f-4ecf-aa4d-fa62f177e6d3)
 
+- Median values across numeric attributes and the target variable (1=loan approved and 0=loan rejected)
+  - ![image](https://github.com/user-attachments/assets/e7bffc13-a6e3-4afe-96d9-121b8cab346e)
+    - The approved loan (loan_status 1) has a lower person_income ($50,629 vs. $72,928) and loan_amount ($9,750 vs. $8,000), but a higher loan_int_rate (12.98% vs. 10.85%) and loan_percent_income (0.20 vs. 0.11), suggesting approval may prioritize lower income and higher interest tolerance.
+    -  Both applicants have the same person_age (26), person_emp_exp (4.0 years), and cb_person_cred_hist_length (4.0 years), but the approved loan has a slightly lower credit_score (639 vs. 640), indicating credit score differences may not be the primary factor.
+    -  The rejected loan (loan_status 0) has a higher income and lower loan_percent_income, which might suggest stricter criteria for higher earners or a lower risk tolerance for the loan terms offered.
+
+
 >Statistical analysis of categorical attributes: Chi-square testing
 
 ![r](https://github.com/user-attachments/assets/d83b5276-6a49-42b8-93f3-cf254bdbc8d5)
+
+
+- Contingency tables for categorical attributes and the target variable (1=loan approved and 0=loan rejected)
+  - ![image](https://github.com/user-attachments/assets/1c79e359-3ac5-4685-8a01-1a84c373ab17)
+    - Gender Neutrality in Approvals: The chi-square test for person_gender (p-value = 1.0) indicates no significant relationship with loan_status, with approved loans nearly evenly split (1574 female vs. 1536 male), suggesting gender does not impact loan approval.
+    - Home Ownership Influence: Person_home_ownership (p-value = 0.0) shows a significant association with loan_status; approved loans are more frequent among renters (7955) compared to other categories, indicating home ownership status strongly influences approval decisions.
+    - Loan Intent and Defaults Matter: Loan_intent (p-value = 0.0) and previous_loan_defaults_on_file (p-value = 0.0) significantly affect loan_status, with higher approvals for HOMEIMPROVEMENT loans (3525) and no prior defaults (10,000 approved), indicating these are key approval factors.
+
 
 ---
 
